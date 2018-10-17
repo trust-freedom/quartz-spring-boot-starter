@@ -1,6 +1,6 @@
 # quartz-spring-boot-starter
 
-﻿## 介绍
+## 介绍
 
 quartz-spring-boot-starter是一个Quartz定时任务框架的SpringBoot启动器，使SpringBoot 1.x可以方便的集成Quartz
 
@@ -51,7 +51,7 @@ spring.quartz.property-file-path=file:文件绝对路径
 - 指定类路径下文件，以 **classpath:** 开头
 - 指定文件绝对路径，以 **file:** 开头
 
-> **注意：**application.properties中的配置会覆盖quartz.properties中的配置
+> **注意：** application.properties中的配置会覆盖quartz.properties中的配置
 
 
 
@@ -72,7 +72,7 @@ spring.quartz.jobStoreType=两种值：MEMORY 和 JDBC，默认值是MEMORY
 - 使用应用的唯一数据源 或 主数据源
 - 使用为Quartz指定的数据源
 
-如果使用应用的数据源，要么应用只有唯一的数据源，要么应用有多个数据源，但其中必须有且只有一个主数据源，可以通过**@Primary**指定
+如果使用应用的数据源，要么应用只有唯一的数据源，要么应用有多个数据源，但其中必须有且只有一个主数据源，可以通过 **@Primary** 指定
 
 如果想指定Quartz自己的数据源，可以使用`@QuartzDataSource`注解指定数据源为Quartz数据源，会优先使用，如
 
@@ -192,7 +192,7 @@ public interface SchedulerFactoryBeanCustomizer {
 
 ## FAQ
 
-**1、为什么application.properties中的spring.quartz.properties.*的配置会覆盖通过spring.quartz.property-file-path指定的quartz.properties配置文件中的配置？**
+**1、为什么application.properties中的spring.quartz.properties.\*的配置会覆盖通过spring.quartz.property-file-path指定的quartz.properties配置文件中的配置？**
 
 由于创建Scheduler对象使用的是spring-context-support包下的**SchedulerFactoryBean**，而在其`initSchedulerFactory()`方法中会创建一个合并后最终的Properties变量作为schedulerFactory初始化的属性，逻辑：
 
