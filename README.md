@@ -194,7 +194,7 @@ public interface SchedulerFactoryBeanCustomizer {
 
 **1、为什么application.properties中的spring.quartz.properties.*的配置会覆盖通过spring.quartz.property-file-path指定的quartz.properties配置文件中的配置？**
 
-由于创建Scheduler对象使用的是spring-context-support包下的==**SchedulerFactoryBean**==，而在其`initSchedulerFactory()`方法中会创建一个合并后最终的Properties变量作为schedulerFactory初始化的属性，逻辑：
+由于创建Scheduler对象使用的是spring-context-support包下的**SchedulerFactoryBean**，而在其`initSchedulerFactory()`方法中会创建一个合并后最终的Properties变量作为schedulerFactory初始化的属性，逻辑：
 
 ```java
 Properties mergedProps = new Properties();
@@ -223,7 +223,7 @@ CollectionUtils.mergePropertiesIntoMap(this.quartzProperties, mergedProps);
 
 **2、在quartz.properties配置文件中已经可以指定`org.quartz.jobStore.class`，为什么还要单独新增一个starter的配置项`spring.quartz.jobStoreType`来指定持久化类型呢？**
 
-同样是基于==**SchedulerFactoryBean**==中的`initSchedulerFactory()`逻辑：
+同样是基于**SchedulerFactoryBean**中的`initSchedulerFactory()`逻辑：
 
 ```java
 //StdSchedulerFactory.PROP_JOB_STORE_CLASS就是org.quartz.jobStore.class
