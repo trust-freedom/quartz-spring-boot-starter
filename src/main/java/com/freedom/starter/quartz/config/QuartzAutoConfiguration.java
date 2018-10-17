@@ -2,9 +2,11 @@ package com.freedom.starter.quartz.config;
 
 import org.quartz.Calendar;
 import org.quartz.JobDetail;
+import org.quartz.Scheduler;
 import org.quartz.Trigger;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -23,6 +25,7 @@ import java.util.Map;
 import java.util.Properties;
 
 @Configuration
+@ConditionalOnClass({ Scheduler.class, SchedulerFactoryBean.class })
 @EnableConfigurationProperties(QuartzProperties.class)
 @AutoConfigureAfter({ DataSourceAutoConfiguration.class })  //在数据源自动配置后再配置
 public class QuartzAutoConfiguration {
