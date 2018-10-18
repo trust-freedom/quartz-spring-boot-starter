@@ -158,7 +158,33 @@ public class DemoJob extends QuartzJobBean {
 
 如果jobStoreType=JDBC，那么启动时会加载数据库中的Job
 
-还可以通过javaConfig的方式向Spring容器中注入实现了JobDetail 和 Trigger接口的实例，在创建ScheduleFactoryBean时会将Spring容器中的JobDetail 和 Trigger都添加进去
+还可以通过javaConfig的方式向Spring容器中注入实现了JobDetail 和 Trigger接口的实例，在创建ScheduleFactoryBean时会将Spring容器中的JobDetail 和 Trigger都添加进去，例如：
+
+```java
+@Configuration
+public class JobConfig {
+
+    @Bean
+    public JobDetail myJobDetail() {
+        return JobBuilder.newJob(DemoJob.class).withIdentity("DemoJob").build();
+    }
+
+    @Bean
+    public Trigger myJobTrigger() {
+        SimpleScheduleBuilder simpleScheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
+                                                         .withIntervalInSeconds(2)
+                                                         .repeatForever();
+        return TriggerBuilder.newTrigger()
+                             .forJob(myJobDetail())
+                             .withIdentity("MyTrigger")
+                             .withSchedule(simpleScheduleBuilder)
+                             .build();
+    }
+
+}
+```
+
+
 
 
 
