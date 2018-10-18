@@ -259,7 +259,7 @@ if (this.dataSource != null) {
 }
 ```
 
-这段代码之前已经完成了**quartz.properties配置文件 **和 **quartzProperties配置项**的合并，即已经读取过了s用户的所有配置项，才有的这段逻辑
+这段代码之前已经完成了**quartz.properties配置文件** 和 **quartzProperties配置项**的合并，即已经读取过了s用户的所有配置项，才有的这段逻辑
 
 所以，只要SchedulerFactoryBean设置了dataSource，无论用户设置的org.quartz.jobStore.class是什么，都会使用LocalDataSourceJobStore
 
